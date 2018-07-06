@@ -1,0 +1,21 @@
+name: flutter_safetynet_attestation
+description: SafetyNet Attestation API for Flutter (Android only)
+version: 0.0.1
+author: Edouard Marquez <moi@edouard-marquez.me>
+homepage: https://github.com/g123k/flutter_safetynet_attestation
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://www.dartlang.org/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  plugin:
+    androidPackage: fr.g123k.fluttersafetynetattestation
+    pluginClass: FlutterSafetynetAttestationPlugin
+
+environment:
+  sdk: ">=2.0.0-dev.28.0 <3.0.0"
