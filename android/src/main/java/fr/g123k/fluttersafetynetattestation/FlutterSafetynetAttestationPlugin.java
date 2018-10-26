@@ -73,8 +73,15 @@ public class FlutterSafetynetAttestationPlugin implements MethodCallHandler {
             return;
         }
 
+        // Check nonce
+        byte[] nonce = getNonceFrom(call);
+        if (nonce == null || nonce.length < 16) {
+            result.error("Error", "The nonce should be larger than the 16 bytes", null);
+            return;
+        }
+
         SafetyNetClient client = SafetyNet.getClient(activity);
-        Task<SafetyNetApi.AttestationResponse> task = client.attest(getNonceFrom(call), getSafetyNetApiKey());
+        Task<SafetyNetApi.AttestationResponse> task = client.attest(nonce, getSafetyNetApiKey());
 
         task.addOnSuccessListener(activity, new OnSuccessListener<SafetyNetApi.AttestationResponse>() {
             @Override
