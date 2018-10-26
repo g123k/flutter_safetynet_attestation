@@ -7,6 +7,8 @@ import android.text.TextUtils;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.safetynet.SafetyNet;
 import com.google.android.gms.safetynet.SafetyNetApi;
 import com.google.android.gms.safetynet.SafetyNetClient;
@@ -45,12 +47,16 @@ public class FlutterSafetynetAttestationPlugin implements MethodCallHandler {
 
     @Override
     public void onMethodCall(MethodCall call, Result result) {
-        if (call.method.equals("checkGooglePlayServicesAvailability")) {
-            checkGooglePlayServicesAvailability(result);
-        } else if (call.method.equals("requestSafetyNetAttestation")) {
-            requestSafetyNetAttestation(call, result);
-        } else {
-            result.notImplemented();
+        switch (call.method) {
+            case "checkGooglePlayServicesAvailability":
+                checkGooglePlayServicesAvailability(result);
+                break;
+            case "requestSafetyNetAttestation":
+                requestSafetyNetAttestation(call, result);
+                break;
+            default:
+                result.notImplemented();
+                break;
         }
     }
 
@@ -90,7 +96,15 @@ public class FlutterSafetynetAttestationPlugin implements MethodCallHandler {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
-                result.error("Error", e.getMessage(), null);
+
+                if (e instanceof ApiException) {
+                    ApiException apiException = (ApiException) e;
+                    result.error("Error",
+                            CommonStatusCodes.getStatusCodeString(apiException.getStatusCode()) + " : " +
+                            apiException.getMessage(), null);
+                } else {
+                    result.error("Error", e.getMessage(), null);
+                }
             }
         });
     }
