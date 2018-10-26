@@ -93,15 +93,37 @@ class _SafetyNetAttestationWidgetState
   }
 
   void requestSafetyNetAttestation() async {
-    JWSPayload res =
-        await FlutterSafetynetAttestation.safetyNetAttestationPayload('nonce');
+    String dialogTitle, dialogMessage;
+    try {
+      JWSPayload res =
+          await FlutterSafetynetAttestation.safetyNetAttestationPayload(
+              'nonce');
+
+      dialogTitle = 'SafetyNet Attestation Payload';
+      dialogMessage = res?.toString();
+    } catch (e) {
+      dialogTitle = 'ERROR - SafetyNet Attestation Payload';
+
+      if (e is PlatformException) {
+        dialogMessage = e.message;
+      } else {
+        dialogMessage = e?.toString();
+      }
+    }
 
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('SafetyNet Attestation Payload'),
-            content: Text('$res'),
+            title: Text(dialogTitle),
+            content: Text(dialogMessage),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('OK'))
+            ],
           );
         });
 
