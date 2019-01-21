@@ -112,4 +112,16 @@ class JWSPayload {
         'ctsProfileMatch: $ctsProfileMatch\n'
         'basicIntegrity: $basicIntegrity';
   }
+
+  String toJSON() {
+    return jsonEncode({
+      'nonce': nonce,
+      'timestampMs': timestampMs,
+      'apkPackageName': apkPackageName,
+      'apkCertificateDigestSha256': apkCertificateDigestSha256,
+      'apkDigestSha256': apkDigestSha256,
+      'ctsProfileMatch': ctsProfileMatch,
+      'basicIntegrity': basicIntegrity
+    });
+  }
 }
