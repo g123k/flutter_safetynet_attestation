@@ -1,3 +1,7 @@
+## [0.0.3] - 21th January 2018
+
+* The JWSPayload can now be exported in a JSON format
+
 ## [0.0.2] - 26th October 2018
 
 * SafetyNet dependency updated to 16.0.0
