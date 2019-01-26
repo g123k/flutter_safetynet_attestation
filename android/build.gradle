@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 }
 
@@ -22,7 +22,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
-    implementation "com.google.android.gms:play-services-safetynet:16.0.0"
+    implementation 'androidx.annotation:annotation:1.0.1'
+    implementation 'com.google.android.gms:play-services-safetynet:16.0.0'
     implementation 'com.nimbusds:nimbus-jose-jwt:6.3.1'
 }

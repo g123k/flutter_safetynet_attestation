@@ -1,3 +1,7 @@
+## [0.1.0] - 26th January 2018
+
+* [Breaking change] Migration to AndroidX
+
 ## [0.0.3] - 21th January 2018
 
 * The JWSPayload can now be exported in a JSON format
