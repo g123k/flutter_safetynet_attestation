@@ -128,15 +128,11 @@ public class FlutterSafetynetAttestationPlugin implements MethodCallHandler {
 
     private byte[] getRequestNonce(String data) {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        byte[] bytes = new byte[24];
-        new SecureRandom().nextBytes(bytes);
         try {
-            byteStream.write(bytes);
             byteStream.write(data.getBytes());
         } catch (IOException e) {
             return null;
         }
-
         return byteStream.toByteArray();
     }
 
