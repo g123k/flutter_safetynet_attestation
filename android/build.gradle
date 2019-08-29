@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.android.tools.build:gradle:3.5.0'
     }
 }
 
@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.0.1'
-    implementation 'com.google.android.gms:play-services-safetynet:16.0.0'
-    implementation 'com.nimbusds:nimbus-jose-jwt:6.3.1'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.android.gms:play-services-safetynet:17.0.0'
+    implementation('com.nimbusds:nimbus-jose-jwt:6.3.1') { exclude group: "net.minidev", module: "json-smart" }
 }
