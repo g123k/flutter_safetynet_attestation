@@ -37,4 +37,5 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.google.android.gms:play-services-safetynet:17.0.0'
     implementation('com.nimbusds:nimbus-jose-jwt:6.3.1') { exclude group: "net.minidev", module: "json-smart" }
+    implementation 'net.minidev:json-smart:2.3'
 }
