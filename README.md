@@ -1,4 +1,4 @@
-# Flutter SafetyNet Attestation plugin for Android
+# Flutter SafetyNet Attestation plugin for Android (UNMAINTAINED)
 
 ## What is SafetyNet?
 
