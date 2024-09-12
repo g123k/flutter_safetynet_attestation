@@ -91,6 +91,8 @@ class JWSPayload {
   final String apkDigestSha256;
   final bool ctsProfileMatch;
   final bool basicIntegrity;
+  final String error;
+  final String advice;
 
   JWSPayload.fromJSON(Map<String, dynamic> json)
       : nonce = json["nonce"],
@@ -100,7 +102,9 @@ class JWSPayload {
             List.from(json["apkCertificateDigestSha256"]),
         apkDigestSha256 = json["apkDigestSha256"],
         ctsProfileMatch = json["ctsProfileMatch"],
-        basicIntegrity = json["basicIntegrity"];
+        basicIntegrity = json["basicIntegrity"],
+        error = json["error"],
+        advice = json["advice"];
 
   @override
   String toString() {
@@ -110,7 +114,9 @@ class JWSPayload {
         'apkCertificateDigestSha256: $apkCertificateDigestSha256\n'
         'apkDigestSha256: $apkDigestSha256\n'
         'ctsProfileMatch: $ctsProfileMatch\n'
-        'basicIntegrity: $basicIntegrity';
+        'basicIntegrity: $basicIntegrity\n'
+        'error: $error\n'
+        'advice: $advice\n';
   }
 
   String toJSON() {
@@ -121,7 +127,9 @@ class JWSPayload {
       'apkCertificateDigestSha256': apkCertificateDigestSha256,
       'apkDigestSha256': apkDigestSha256,
       'ctsProfileMatch': ctsProfileMatch,
-      'basicIntegrity': basicIntegrity
+      'basicIntegrity': basicIntegrity,
+      'error': error,
+      'advice': advice
     });
   }
 }
